@@ -11,7 +11,11 @@ LINK=X:\Users\Hawkynt\Documents\Card Game - Chromatyx\Cards.xlsx
 
 [all]=2-{(ID)}
 
-IMAGE=1,BackFace.png,0,0,100%,100%,0,NP
+IMAGE=1,BackFace.png,0,0,100%,100%,0,NA
+FONT=Arial,8,BTF,#000000,#FFFFFF,0.2,0.2
+TEXT=1,"©2024 Hawkynt\13\ \13\ \13\All Rights reserved",0%,0%,100%,100%,CENTER, CENTER
+FONT=Arial,8,BTF,#FFFFFF
+TEXT=1,"©2024 Hawkynt\13\ \13\ \13\All Rights reserved",0%,0%,100%,100%,CENTER, CENTER
 
 VISUAL=HVG, 10, 10
 ;Background
