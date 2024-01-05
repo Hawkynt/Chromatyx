@@ -22,14 +22,15 @@ ICON=,O,"Icons\Repeat.png"
 ICON=,D,"Icons\Reversal.png"
 ICON=,S,"Icons\Shield.png"
 
-;card backface
-IMAGE=1,BackFace.png,0,0,100%,100%,0,NA
-FONT=Arial,8,BTF,#000000,,0.2,0.2
-TEXT=1,"©2024 Hawkynt\13\ \13\ \13\All Rights reserved",0%,0%,100%,100%,CENTER, CENTER
-FONT=Arial,8,BTF,#FFFFFF
-TEXT=1,"©2024 Hawkynt\13\ \13\ \13\All Rights reserved",0%,0%,100%,100%,CENTER, CENTER
 
 VISUAL=HVG, 10, 10
+;card backface
+IMAGE=1,"BackFace.png",0%,0%,100%,100%,0,NA
+IMAGE=1,"Logo.png",{10863/322}%,{19747/1000}%,{5261/161}%,{21887/1000}%,0,NAP
+FONT=Arial,8,BTF,#000000,,0.2,0.2
+TEXT=1,"©2024 Hawkynt\13\ \13\ \13\All Rights reserved",0%,0%,100%,100%,CENTER,CENTER
+FONT=Arial,8,BTF,#FFFFFF
+TEXT=1,"©2024 Hawkynt\13\ \13\ \13\All Rights reserved",0%,0%,100%,100%,CENTER,CENTER
 ;Background
 IMAGE=[all],"Stars.png",{2533/161}%,{20233/1000}%,{44427/644}%,{11031/200}%,0,NC
 ;Face
