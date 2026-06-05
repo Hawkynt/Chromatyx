@@ -3,6 +3,18 @@
 ## v20260605 (2026-06-05)
 
 ### Added
+- rulebook PDFs built from markdown via pandoc and typst, pinned portable tools, shipped with every build (52ca56b)
+- rulebook drafted in German and English with translation-parity and deck-consistency tests (449870e)
+- English deck generation from the workbook's localization sheet, nanDECK never recalculates the built-in language switch + render wrapper accepts a data file override by patching LINK into a temporary script copy (e428635)
+- duplex print layout, pages alternate fronts and position-mirrored backs for long-edge double-siding + validator rejects CARDS combined with DUPLEX as nanDECK forbids it (6be276f)
+- nanDECK download verified against a pinned SHA-256 before extraction (d838271)
+
+### Changed
+- pipeline renders and ships both de-DE and en-US duplex PDFs * README covers localized downloads and double-sided printing (622863a)
+
+## v20260605 (2026-06-05)
+
+### Added
 - standard CI/nightly/release pipeline rendering the print PDF via nanDECK + changelog automation and GFS-pruned nightly prereleases + community health files, issue templates and editorconfig (324c168)
 - static deck validator cross-checking Game.nde against Cards.xlsx + pytest suite covering directives, expressions, colors, file references, labels, icons and card data (3dd51f1)
 - white corner text (d01cb8d)
