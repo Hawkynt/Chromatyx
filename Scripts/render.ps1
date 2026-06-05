@@ -17,7 +17,10 @@ param(
   [string]$ScriptFile = (Join-Path $PSScriptRoot '..\Game.nde'),
   [string]$OutputFile = (Join-Path $PSScriptRoot '..\Chromatyx.pdf'),
   [string]$ToolDir = (Join-Path ([IO.Path]::GetTempPath()) 'nandeck'),
-  [string]$DownloadUrl = 'https://nandeck.com/download/471/',  # portable zip, v1.29
+  [string[]]$DownloadUrls = @(
+    'https://nandeck.com/download/471/',          # portable zip, v1.29
+    'http://www.nand.it/nandeck/nandeck.zip'      # author's legacy mirror
+  ),
   [int]$TimeoutSeconds = 600,
   [long]$MinimumBytes = 1MB
 )
@@ -28,12 +31,22 @@ $log = Join-Path $ToolDir 'nanDECK.log'
 
 # --- provision nanDECK (idempotent, cache-friendly) --------------------------
 if (-not (Test-Path $exe)) {
-  Write-Host "Downloading nanDECK from $DownloadUrl ..."
   New-Item -ItemType Directory -Force -Path $ToolDir | Out-Null
   $zip = Join-Path $ToolDir 'nandeck.zip'
-  Invoke-WebRequest -Uri $DownloadUrl -OutFile $zip
+  $downloaded = $false
+  foreach ($url in $DownloadUrls) {
+    try {
+      Write-Host "Downloading nanDECK from $url ..."
+      Invoke-WebRequest -Uri $url -OutFile $zip -ConnectionTimeoutSeconds 30 -MaximumRetryCount 3 -RetryIntervalSec 10
+      $downloaded = $true
+      break
+    } catch {
+      Write-Warning "Download from $url failed: $($_.Exception.Message)"
+    }
+  }
+  if (-not $downloaded) { throw "nanDECK could not be downloaded from any mirror: $($DownloadUrls -join ', ')" }
   Expand-Archive -Path $zip -DestinationPath $ToolDir -Force
-  if (-not (Test-Path $exe)) { throw "Archive from $DownloadUrl did not contain nanDECK.exe" }
+  if (-not (Test-Path $exe)) { throw "Downloaded archive did not contain nanDECK.exe" }
 }
 
 # Batch actions are ignored unless enabled in the configuration; also keep the
