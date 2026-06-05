@@ -214,6 +214,7 @@ class DeckValidator:
       return self.findings
 
     self._check_directives_known(script)
+    self._check_duplex_cards_conflict(script)
     self._check_visual_blocks(script)
     self._check_expressions(script)
     self._check_colors(script)
@@ -235,6 +236,12 @@ class DeckValidator:
     for directive in script.directives:
       if directive.name not in KNOWN_DIRECTIVES:
         self.warning(directive.line, f"unknown directive '{directive.name}'")
+
+  def _check_duplex_cards_conflict(self, script):
+    duplex = script.first('DUPLEX')
+    cards = script.first('CARDS')
+    if duplex and cards:
+      self.error(cards.line, "CARDS must not be used together with DUPLEX (nanDECK needs to add cards to the deck)")
 
   def _check_visual_blocks(self, script):
     depth = 0

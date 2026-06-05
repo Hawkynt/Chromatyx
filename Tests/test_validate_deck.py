@@ -277,6 +277,16 @@ class TestDataRows:
     assert project.errors(VALID_SCRIPT) == []
 
 
+class TestDuplex:
+
+  def test_given_duplex_and_cards_together_when_validating_then_error(self, project):
+    findings = project.errors(VALID_SCRIPT + 'DUPLEX=[all],1\nCARDS=3\n')
+    assert any('must not be used together with DUPLEX' in f.message for f in findings)
+
+  def test_given_duplex_without_cards_when_validating_then_no_error(self, project):
+    assert project.errors(VALID_SCRIPT + 'DUPLEX=[all],1\nPRINT=DUPLEX\n') == []
+
+
 class TestCardCount:
 
   def test_given_cards_directive_mismatching_generated_count_when_validating_then_warning(self, project):
