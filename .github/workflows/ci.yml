@@ -1,0 +1,73 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  # release.yml calls this via `uses: ./.github/workflows/ci.yml`
+  # so releases run the exact same checks as per-PR CI.
+  workflow_call: {}
+
+# ---------------------------------------------------------------------------
+# Chromatyx is a nanDECK card-game repo: there is no compiler. "Build" means
+# rendering the print-and-play PDF, "test" means the validator's pytest suite
+# plus a static cross-check of Game.nde against Cards.xlsx.
+#
+# Validation and tests run on ubuntu AND windows (required tier). Rendering
+# needs nanDECK, a Win32 application, so the render smoke-test runs on the
+# windows leg only and uploads the resulting PDF for review.
+# ---------------------------------------------------------------------------
+
+# Force JavaScript-based actions to run on Node 24 instead of the deprecated Node 20 ahead of
+# the 2026-06-16 hard cutover, until we bump each action to a Node-24-native major version.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
+jobs:
+  test:
+    name: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install test dependencies
+        run: python -m pip install --quiet pytest
+
+      # This tier is REQUIRED -- do NOT add continue-on-error here.
+      - name: Test
+        run: python -m pytest Tests -v
+
+      - name: Validate deck script and card data
+        run: python Scripts/validate_deck.py Game.nde
+
+      # Render smoke-test: proves the deck still turns into a printable PDF.
+      - name: Cache nanDECK
+        if: runner.os == 'Windows'
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/nandeck
+          key: nandeck-1.29
+
+      - name: Render print-and-play PDF
+        if: runner.os == 'Windows'
+        run: pwsh Scripts/render.ps1 -ToolDir '${{ runner.temp }}/nandeck'
+
+      - name: Upload PDF artifact
+        if: runner.os == 'Windows'
+        uses: actions/upload-artifact@v4
+        with:
+          name: Chromatyx-PrintAndPlay
+          path: Chromatyx.pdf
+          if-no-files-found: error
+          retention-days: 14

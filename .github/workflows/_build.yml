@@ -1,0 +1,48 @@
+name: Build artifacts
+
+# Shared build block. Called by release.yml (manual dispatch) and nightly.yml
+# (auto, on CI success). Single place that turns a commit into the shippable
+# artifact -- the print-and-play PDF -- so release and nightly never diverge.
+#
+# There are no package manifests in this repo (the deck is data, not code), so
+# no version stamping happens here; releases are dated markers (vyyyyMMdd).
+on:
+  workflow_call:
+    inputs:
+      ref:
+        description: Git ref/SHA to build (defaults to caller ref)
+        type: string
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+# Force JavaScript-based actions to run on Node 24 instead of the deprecated Node 20 ahead of
+# the 2026-06-16 hard cutover, until we bump each action to a Node-24-native major version.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
+jobs:
+  build:
+    runs-on: windows-latest                       # nanDECK is a Win32 application
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.ref }}
+          fetch-depth: 0
+
+      - name: Cache nanDECK
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/nandeck
+          key: nandeck-1.29
+
+      - name: Render print-and-play PDF
+        run: pwsh Scripts/render.ps1 -ToolDir '${{ runner.temp }}/nandeck'
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: app-artifacts
+          path: Chromatyx.pdf
+          if-no-files-found: error
