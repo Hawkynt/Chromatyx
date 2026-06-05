@@ -1,11 +1,15 @@
 # Chromatyx
 
-[![License](https://img.shields.io/github/license/Hawkynt/Chromatyx)](https://github.com/Hawkynt/Chromatyx/blob/main/LICENSE)
+[![License](https://img.shields.io/badge/License-CC--BY--NC--SA--4.0-blue)](https://github.com/Hawkynt/Chromatyx/blob/main/LICENSE)
 [![Language](https://img.shields.io/github/languages/top/Hawkynt/Chromatyx?color=8957D5)](https://github.com/Hawkynt/Chromatyx)
 
 [![CI](https://github.com/Hawkynt/Chromatyx/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Hawkynt/Chromatyx/actions/workflows/ci.yml)
 ![Last Commit](https://img.shields.io/github/last-commit/Hawkynt/Chromatyx?branch=main)
 ![Activity](https://img.shields.io/github/commit-activity/m/Hawkynt/Chromatyx)
+
+[![Release](https://img.shields.io/github/v/release/Hawkynt/Chromatyx?sort=semver)](https://github.com/Hawkynt/Chromatyx/releases/latest)
+[![Nightly](https://img.shields.io/github/v/release/Hawkynt/Chromatyx?include_prereleases=true&sort=date&label=nightly&color=FF9800)](https://github.com/Hawkynt/Chromatyx/releases)
+[![Downloads](https://img.shields.io/github/downloads/Hawkynt/Chromatyx/total)](https://github.com/Hawkynt/Chromatyx/releases)
 
 [![Stars](https://img.shields.io/github/stars/Hawkynt/Chromatyx?color=FFD700)](https://github.com/Hawkynt/Chromatyx/stargazers)
 [![Forks](https://img.shields.io/github/forks/Hawkynt/Chromatyx?color=008080)](https://github.com/Hawkynt/Chromatyx/network/members)
@@ -21,7 +25,7 @@
 
 ![Chromatyx logo](Logo.png)
 
-## Install
+## 📦 Install
 
 Grab the card deck (`Chromatyx-de-DE.pdf` / `Chromatyx-en-US.pdf`) and the
 matching rulebook (`Chromatyx-Rulebook-de-DE.pdf` / `Chromatyx-Rulebook-en-US.pdf`)
@@ -31,14 +35,14 @@ and print them — no software needed to play:
 - **Nightly:** the newest [`nightly-yyyyMMdd` prerelease](https://github.com/Hawkynt/Chromatyx/releases), published automatically whenever CI passes on `main`.
 - **Bleeding edge:** every CI run uploads the rendered PDFs as the `Chromatyx-PrintAndPlay` artifact.
 
-## Usage
+## 🚀 Usage
 
 Print the PDF **double-sided, flipping on the long edge**, on A4 (300 DPI,
 9 cards per sheet, 56 mm × 87 mm each) and cut along the crop marks. The
 pages alternate card fronts and matching card backs — back positions are
 already mirrored so every card lines up after the flip.
 
-## Features
+## ✨ Features
 
 Every color is a celestial body with its own astronomical symbol:
 
@@ -71,7 +75,7 @@ Status:
 - [X] Duplex print layout (mirrored backs on alternating pages)
 - [X] Rulebook (markdown sources in German and English, built to PDF)
 
-## Building
+## 🛠️ Building
 
 ```bash
 # static checks: deck script, card data and their cross-references (no render)
@@ -97,7 +101,14 @@ run anywhere. Alternatively open `Game.nde` in the
 [nanDECK](https://www.nandeck.com) GUI and build the deck from there. The
 pipeline is documented in [`.github/workflows/`](.github/workflows/README.md).
 
-## License
+## ❤️ Support
+
+If this project saves you time or money, consider supporting its development:
+
+[![GitHub Sponsors](https://img.shields.io/badge/GitHub-Sponsor-EA4AAA?logo=githubsponsors)](https://github.com/sponsors/Hawkynt)
+[![PayPal](https://img.shields.io/badge/PayPal-Donate-00457C?logo=paypal)](https://www.paypal.me/hawkynt)
+
+## 📜 License
 
 Licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) — see [LICENSE](LICENSE).
 
