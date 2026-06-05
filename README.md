@@ -1,8 +1,9 @@
-# What is this?
+# Chromatyx
 
 [![License](https://img.shields.io/github/license/Hawkynt/Chromatyx)](https://github.com/Hawkynt/Chromatyx/blob/main/LICENSE)
 [![Language](https://img.shields.io/github/languages/top/Hawkynt/Chromatyx?color=8957D5)](https://github.com/Hawkynt/Chromatyx)
 
+[![CI](https://github.com/Hawkynt/Chromatyx/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Hawkynt/Chromatyx/actions/workflows/ci.yml)
 ![Last Commit](https://img.shields.io/github/last-commit/Hawkynt/Chromatyx?branch=main)
 ![Activity](https://img.shields.io/github/commit-activity/m/Hawkynt/Chromatyx)
 
@@ -12,4 +13,80 @@
 ![Code Size](https://img.shields.io/github/languages/code-size/Hawkynt/Chromatyx?color=4CAF50)
 ![Repo Size](https://img.shields.io/github/repo-size/Hawkynt/Chromatyx?color=FF9800)
 
-Chromatyx is a card game I'm working on
+[![Release](https://img.shields.io/github/v/release/Hawkynt/Chromatyx?sort=semver)](https://github.com/Hawkynt/Chromatyx/releases/latest)
+[![Nightly](https://img.shields.io/github/v/release/Hawkynt/Chromatyx?include_prereleases=true&sort=date&label=nightly&color=FF9800)](https://github.com/Hawkynt/Chromatyx/releases)
+[![Downloads](https://img.shields.io/github/downloads/Hawkynt/Chromatyx/total)](https://github.com/Hawkynt/Chromatyx/releases)
+
+> A print-and-play color-shedding card game in the spirit of UNO, themed around the solar system: twelve colors mapped to celestial bodies across 266 cards, all defined in a spreadsheet and rendered into a printable PDF with nanDECK — so the deck can be tweaked in Excel and a fresh print sheet falls out of CI.
+
+![Chromatyx logo](Logo.png)
+
+## Install
+
+Grab `Chromatyx.pdf` and print it — no software needed to play:
+
+- **Stable:** the [latest release](https://github.com/Hawkynt/Chromatyx/releases/latest) (tagged `vyyyyMMdd`).
+- **Nightly:** the newest [`nightly-yyyyMMdd` prerelease](https://github.com/Hawkynt/Chromatyx/releases), published automatically whenever CI passes on `main`.
+- **Bleeding edge:** every CI run uploads the rendered PDF as the `Chromatyx-PrintAndPlay` artifact.
+
+## Usage
+
+Print the PDF on A4 (300 DPI, 9 cards per sheet, 56 mm × 87 mm each) and cut
+along the crop marks. Page 1 contains the card back — print it onto the
+reverse side (or the backs of sleeved cards) as often as needed.
+
+## Features
+
+Every color is a celestial body with its own astronomical symbol:
+
+| ☉ | ☿ | ♀ | ⊕ | ☾ | ♂ | ♃ | ♄ | ♅ | ♆ | ♇ | ★ |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Sun | Mercury | Venus | Earth | Moon | Mars | Jupiter | Saturn | Uranus | Neptune | Pluto | Star |
+| Yellow | Purple | Pink | Green | Gray | Red | Orange | Brown | Cyan | Blue | Black | White |
+
+The 265 playing cards (plus the card back) fall into four groups:
+
+| Type | Cards | What they do |
+| --- | --- | --- |
+| **Normal** | 102 | Digits 0–9 in the planet colors. |
+| **Action** | 66 | 🔄 Reversal (play direction turns around), 🚫 Block (next player skips), 🔂 Repeat (take another turn), ❄️ Freeze (color is locked for a full round), 🔥 Burn (color is banned until the next round), 🎯 Focus (choose the next player). |
+| **Trap** | 61 | +2 / +3 draw penalties and 🌈 Prisma wildcards (choose a color), including combined traps such as Prisma +4, Prisma Block and Prisma Reversal. |
+| **Guard** | 36 | 🛡️ Shield (cancels all effects), Mirror (effects hit the previous player), Guard Focus (effects hit a player of your choice) and −3 / −4 discards. |
+
+All card data lives in [`Cards.xlsx`](Cards.xlsx) (deck list, colors, effects
+and a localization sheet); [`Game.nde`](Game.nde) is the nanDECK script that
+lays the cards out.
+
+Status:
+
+- [X] Card layout and artwork
+- [X] Complete deck data (266 cards)
+- [X] Automated validation, builds and releases
+- [ ] Rulebook
+- [ ] English card texts (localization sheet is already in place)
+- [ ] Duplex/backside print layout
+
+## Building
+
+```bash
+# static checks: deck script, card data and their cross-references (no render)
+python Scripts/validate_deck.py Game.nde
+
+# run the validator's test suite
+python -m pytest Tests
+
+# render the print-and-play PDF (downloads portable nanDECK on first run)
+pwsh Scripts/render.ps1
+```
+
+Rendering needs Windows (nanDECK is a Win32 application); validation and tests
+run anywhere. Alternatively open `Game.nde` in the
+[nanDECK](https://www.nandeck.com) GUI and build the deck from there. The
+pipeline is documented in [`.github/workflows/`](.github/workflows/README.md).
+
+## License
+
+Licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) — see [LICENSE](LICENSE).
+
+Give credit to ***Hawkynt*** when using; non-commercial use only, and
+adaptations must be shared under the same license.
