@@ -2,6 +2,11 @@
 /Game.pdf
 /Chromatyx.pdf
 /Chromatyx-*.pdf
+/~render_*.nde
+/~render_*.pdf
+
+# generated localized card data
+/Cards.*.xlsx
 
 # python
 __pycache__/
