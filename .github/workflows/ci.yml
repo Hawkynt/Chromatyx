@@ -59,15 +59,21 @@ jobs:
           path: ${{ runner.temp }}/nandeck
           key: nandeck-1.29
 
-      - name: Render print-and-play PDF
+      - name: Generate localized card data
         if: runner.os == 'Windows'
-        run: pwsh Scripts/render.ps1 -ToolDir '${{ runner.temp }}/nandeck'
+        run: python Scripts/localize.py en-US
+
+      - name: Render print-and-play PDFs (de-DE + en-US)
+        if: runner.os == 'Windows'
+        run: |
+          pwsh Scripts/render.ps1 -ToolDir '${{ runner.temp }}/nandeck' -OutputFile Chromatyx-de-DE.pdf
+          pwsh Scripts/render.ps1 -ToolDir '${{ runner.temp }}/nandeck' -DataFile Cards.en-US.xlsx -OutputFile Chromatyx-en-US.pdf
 
       - name: Upload PDF artifact
         if: runner.os == 'Windows'
         uses: actions/upload-artifact@v4
         with:
           name: Chromatyx-PrintAndPlay
-          path: Chromatyx.pdf
+          path: Chromatyx-*.pdf
           if-no-files-found: error
           retention-days: 14

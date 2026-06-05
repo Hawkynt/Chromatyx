@@ -23,17 +23,19 @@
 
 ## Install
 
-Grab `Chromatyx.pdf` and print it — no software needed to play:
+Grab `Chromatyx-de-DE.pdf` (German) or `Chromatyx-en-US.pdf` (English) and
+print it — no software needed to play:
 
 - **Stable:** the [latest release](https://github.com/Hawkynt/Chromatyx/releases/latest) (tagged `vyyyyMMdd`).
 - **Nightly:** the newest [`nightly-yyyyMMdd` prerelease](https://github.com/Hawkynt/Chromatyx/releases), published automatically whenever CI passes on `main`.
-- **Bleeding edge:** every CI run uploads the rendered PDF as the `Chromatyx-PrintAndPlay` artifact.
+- **Bleeding edge:** every CI run uploads the rendered PDFs as the `Chromatyx-PrintAndPlay` artifact.
 
 ## Usage
 
-Print the PDF on A4 (300 DPI, 9 cards per sheet, 56 mm × 87 mm each) and cut
-along the crop marks. Page 1 contains the card back — print it onto the
-reverse side (or the backs of sleeved cards) as often as needed.
+Print the PDF **double-sided, flipping on the long edge**, on A4 (300 DPI,
+9 cards per sheet, 56 mm × 87 mm each) and cut along the crop marks. The
+pages alternate card fronts and matching card backs — back positions are
+already mirrored so every card lines up after the flip.
 
 ## Features
 
@@ -62,9 +64,9 @@ Status:
 - [X] Card layout and artwork
 - [X] Complete deck data (266 cards)
 - [X] Automated validation, builds and releases
+- [X] English card texts (generated from the localization sheet)
+- [X] Duplex print layout (mirrored backs on alternating pages)
 - [ ] Rulebook
-- [ ] English card texts (localization sheet is already in place)
-- [ ] Duplex/backside print layout
 
 ## Building
 
@@ -72,11 +74,15 @@ Status:
 # static checks: deck script, card data and their cross-references (no render)
 python Scripts/validate_deck.py Game.nde
 
-# run the validator's test suite
+# run the test suite
 python -m pytest Tests
 
-# render the print-and-play PDF (downloads portable nanDECK on first run)
-pwsh Scripts/render.ps1
+# generate the English card data from the localization sheet
+python Scripts/localize.py en-US
+
+# render the print-and-play PDFs (downloads portable nanDECK on first run)
+pwsh Scripts/render.ps1 -OutputFile Chromatyx-de-DE.pdf
+pwsh Scripts/render.ps1 -DataFile Cards.en-US.xlsx -OutputFile Chromatyx-en-US.pdf
 ```
 
 Rendering needs Windows (nanDECK is a Win32 application); validation and tests

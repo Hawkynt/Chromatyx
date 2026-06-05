@@ -32,17 +32,26 @@ jobs:
           ref: ${{ inputs.ref || github.ref }}
           fetch-depth: 0
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
       - name: Cache nanDECK
         uses: actions/cache@v4
         with:
           path: ${{ runner.temp }}/nandeck
           key: nandeck-1.29
 
-      - name: Render print-and-play PDF
-        run: pwsh Scripts/render.ps1 -ToolDir '${{ runner.temp }}/nandeck'
+      - name: Generate localized card data
+        run: python Scripts/localize.py en-US
+
+      - name: Render print-and-play PDFs (de-DE + en-US)
+        run: |
+          pwsh Scripts/render.ps1 -ToolDir '${{ runner.temp }}/nandeck' -OutputFile Chromatyx-de-DE.pdf
+          pwsh Scripts/render.ps1 -ToolDir '${{ runner.temp }}/nandeck' -DataFile Cards.en-US.xlsx -OutputFile Chromatyx-en-US.pdf
 
       - uses: actions/upload-artifact@v4
         with:
           name: app-artifacts
-          path: Chromatyx.pdf
+          path: Chromatyx-*.pdf
           if-no-files-found: error
