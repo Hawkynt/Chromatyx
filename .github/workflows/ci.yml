@@ -69,6 +69,19 @@ jobs:
           pwsh Scripts/render.ps1 -ToolDir '${{ runner.temp }}/nandeck' -OutputFile Chromatyx-de-DE.pdf
           pwsh Scripts/render.ps1 -ToolDir '${{ runner.temp }}/nandeck' -DataFile Cards.en-US.xlsx -OutputFile Chromatyx-en-US.pdf
 
+      - name: Cache pandoc/typst
+        if: runner.os == 'Windows'
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/doctools
+          key: doctools-pandoc-3.10-typst-0.14.2
+
+      - name: Build rulebook PDFs (de-DE + en-US)
+        if: runner.os == 'Windows'
+        run: |
+          pwsh Scripts/build_rulebook.ps1 -MarkdownFile Rulebook.de-DE.md -ToolDir '${{ runner.temp }}/doctools'
+          pwsh Scripts/build_rulebook.ps1 -MarkdownFile Rulebook.en-US.md -ToolDir '${{ runner.temp }}/doctools'
+
       - name: Upload PDF artifact
         if: runner.os == 'Windows'
         uses: actions/upload-artifact@v4

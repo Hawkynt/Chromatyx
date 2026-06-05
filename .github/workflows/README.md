@@ -67,6 +67,11 @@ does not report script errors through its exit code. The nanDECK log is echoed
 on failure. The deck uses `DUPLEX`/`PRINT=DUPLEX`, so pages alternate fronts
 and position-mirrored backs for long-edge double-sided printing.
 
+[`Scripts/build_rulebook.ps1`](../../Scripts/build_rulebook.ps1) converts the
+markdown rulebooks (`Rulebook.<culture>.md`) to A4 PDFs with pandoc and the
+typst PDF engine — both portable, SHA-256-pinned downloads (a system pandoc is
+preferred when present, as on GitHub runners). No TeX toolchain involved.
+
 [`Scripts/localize.py`](../../Scripts/localize.py) generates the English deck
 data (`Cards.en-US.xlsx`) by applying the workbook's own Localization sheet to
 the cached cell values (nanDECK never recalculates Excel formulas, so the
@@ -123,5 +128,5 @@ the template then mirror the change here.
 
 | Artifact                                                  | Produced by          |
 |-----------------------------------------------------------|----------------------|
-| `app-artifacts` (`Chromatyx-de-DE.pdf`, `Chromatyx-en-US.pdf`) | release + nightly |
+| `app-artifacts` (deck + rulebook PDFs, de-DE + en-US)      | release + nightly    |
 | `Chromatyx-PrintAndPlay` (same PDFs, smoke build)          | ci.yml (windows leg) |

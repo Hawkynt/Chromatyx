@@ -23,8 +23,9 @@
 
 ## Install
 
-Grab `Chromatyx-de-DE.pdf` (German) or `Chromatyx-en-US.pdf` (English) and
-print it — no software needed to play:
+Grab the card deck (`Chromatyx-de-DE.pdf` / `Chromatyx-en-US.pdf`) and the
+matching rulebook (`Chromatyx-Rulebook-de-DE.pdf` / `Chromatyx-Rulebook-en-US.pdf`)
+and print them — no software needed to play:
 
 - **Stable:** the [latest release](https://github.com/Hawkynt/Chromatyx/releases/latest) (tagged `vyyyyMMdd`).
 - **Nightly:** the newest [`nightly-yyyyMMdd` prerelease](https://github.com/Hawkynt/Chromatyx/releases), published automatically whenever CI passes on `main`.
@@ -57,7 +58,9 @@ The 265 playing cards (plus the card back) fall into four groups:
 
 All card data lives in [`Cards.xlsx`](Cards.xlsx) (deck list, colors, effects
 and a localization sheet); [`Game.nde`](Game.nde) is the nanDECK script that
-lays the cards out.
+lays the cards out. The rules are authored as markdown
+([`Rulebook.de-DE.md`](Rulebook.de-DE.md) / [`Rulebook.en-US.md`](Rulebook.en-US.md))
+and converted to PDF during the build.
 
 Status:
 
@@ -66,7 +69,7 @@ Status:
 - [X] Automated validation, builds and releases
 - [X] English card texts (generated from the localization sheet)
 - [X] Duplex print layout (mirrored backs on alternating pages)
-- [ ] Rulebook
+- [X] Rulebook (markdown sources in German and English, built to PDF)
 
 ## Building
 
@@ -83,6 +86,10 @@ python Scripts/localize.py en-US
 # render the print-and-play PDFs (downloads portable nanDECK on first run)
 pwsh Scripts/render.ps1 -OutputFile Chromatyx-de-DE.pdf
 pwsh Scripts/render.ps1 -DataFile Cards.en-US.xlsx -OutputFile Chromatyx-en-US.pdf
+
+# build the rulebook PDFs (pandoc + typst, downloaded on first run)
+pwsh Scripts/build_rulebook.ps1 -MarkdownFile Rulebook.de-DE.md
+pwsh Scripts/build_rulebook.ps1 -MarkdownFile Rulebook.en-US.md
 ```
 
 Rendering needs Windows (nanDECK is a Win32 application); validation and tests
