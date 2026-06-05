@@ -1,0 +1,8 @@
+# rendered output
+/Game.pdf
+/Chromatyx.pdf
+/Chromatyx-*.pdf
+
+# python
+__pycache__/
+.pytest_cache/
