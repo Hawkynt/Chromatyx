@@ -8,7 +8,7 @@
 ![Activity](https://img.shields.io/github/commit-activity/m/Hawkynt/Chromatyx)
 
 [![Release](https://img.shields.io/github/v/release/Hawkynt/Chromatyx?sort=semver)](https://github.com/Hawkynt/Chromatyx/releases/latest)
-[![Nightly](https://img.shields.io/github/v/release/Hawkynt/Chromatyx?include_prereleases=true&sort=date&label=nightly&color=FF9800)](https://github.com/Hawkynt/Chromatyx/releases)
+[![Nightly](https://img.shields.io/github/v/release/Hawkynt/Chromatyx?include_prereleases&sort=date&label=nightly&color=FF9800)](https://github.com/Hawkynt/Chromatyx/releases)
 [![Downloads](https://img.shields.io/github/downloads/Hawkynt/Chromatyx/total)](https://github.com/Hawkynt/Chromatyx/releases)
 
 [![Stars](https://img.shields.io/github/stars/Hawkynt/Chromatyx?color=FFD700)](https://github.com/Hawkynt/Chromatyx/stargazers)
@@ -18,7 +18,7 @@
 ![Repo Size](https://img.shields.io/github/repo-size/Hawkynt/Chromatyx?color=FF9800)
 
 [![Release](https://img.shields.io/github/v/release/Hawkynt/Chromatyx?sort=semver)](https://github.com/Hawkynt/Chromatyx/releases/latest)
-[![Nightly](https://img.shields.io/github/v/release/Hawkynt/Chromatyx?include_prereleases=true&sort=date&label=nightly&color=FF9800)](https://github.com/Hawkynt/Chromatyx/releases)
+[![Nightly](https://img.shields.io/github/v/release/Hawkynt/Chromatyx?include_prereleases&sort=date&label=nightly&color=FF9800)](https://github.com/Hawkynt/Chromatyx/releases)
 [![Downloads](https://img.shields.io/github/downloads/Hawkynt/Chromatyx/total)](https://github.com/Hawkynt/Chromatyx/releases)
 
 > A print-and-play color-shedding card game in the spirit of UNO, themed around the solar system: twelve colors mapped to celestial bodies across 266 cards, all defined in a spreadsheet and rendered into a printable PDF with nanDECK — so the deck can be tweaked in Excel and a fresh print sheet falls out of CI.
