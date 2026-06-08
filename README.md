@@ -7,17 +7,13 @@
 ![Last Commit](https://img.shields.io/github/last-commit/Hawkynt/Chromatyx?branch=main)
 ![Activity](https://img.shields.io/github/commit-activity/m/Hawkynt/Chromatyx)
 
-[![Release](https://img.shields.io/github/v/release/Hawkynt/Chromatyx?sort=semver)](https://github.com/Hawkynt/Chromatyx/releases/latest)
-[![Nightly](https://img.shields.io/github/v/release/Hawkynt/Chromatyx?include_prereleases&sort=date&label=nightly&color=FF9800)](https://github.com/Hawkynt/Chromatyx/releases)
-[![Downloads](https://img.shields.io/github/downloads/Hawkynt/Chromatyx/total)](https://github.com/Hawkynt/Chromatyx/releases)
-
 [![Stars](https://img.shields.io/github/stars/Hawkynt/Chromatyx?color=FFD700)](https://github.com/Hawkynt/Chromatyx/stargazers)
 [![Forks](https://img.shields.io/github/forks/Hawkynt/Chromatyx?color=008080)](https://github.com/Hawkynt/Chromatyx/network/members)
 [![Issues](https://img.shields.io/github/issues/Hawkynt/Chromatyx)](https://github.com/Hawkynt/Chromatyx/issues)
 ![Code Size](https://img.shields.io/github/languages/code-size/Hawkynt/Chromatyx?color=4CAF50)
 ![Repo Size](https://img.shields.io/github/repo-size/Hawkynt/Chromatyx?color=FF9800)
 
-[![Release](https://img.shields.io/github/v/release/Hawkynt/Chromatyx?sort=semver)](https://github.com/Hawkynt/Chromatyx/releases/latest)
+[![Release](https://img.shields.io/github/v/release/Hawkynt/Chromatyx)](https://github.com/Hawkynt/Chromatyx/releases/latest)
 [![Nightly](https://img.shields.io/github/v/release/Hawkynt/Chromatyx?include_prereleases&sort=date&label=nightly&color=FF9800)](https://github.com/Hawkynt/Chromatyx/releases)
 [![Downloads](https://img.shields.io/github/downloads/Hawkynt/Chromatyx/total)](https://github.com/Hawkynt/Chromatyx/releases)
 
