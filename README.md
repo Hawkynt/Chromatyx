@@ -21,22 +21,15 @@
 
 ![Chromatyx logo](Logo.png)
 
-## 📦 Install
+## 🧭 Vision
 
-Grab the card deck (`Chromatyx-de-DE.pdf` / `Chromatyx-en-US.pdf`) and the
-matching rulebook (`Chromatyx-Rulebook-de-DE.pdf` / `Chromatyx-Rulebook-en-US.pdf`)
-and print them — no software needed to play:
+A colour-matching card game that has to be *printable*: the whole thing is generated from a
+localization sheet into print-and-play PDFs, so the deck, the card data and the rulebook cannot drift
+apart the way a game maintained as three separate documents always does.
 
-- **Stable:** the [latest release](https://github.com/Hawkynt/Chromatyx/releases/latest) (tagged `vyyyyMMdd`).
-- **Nightly:** the newest [`nightly-yyyyMMdd` prerelease](https://github.com/Hawkynt/Chromatyx/releases), published automatically whenever CI passes on `main`.
-- **Bleeding edge:** every CI run uploads the rendered PDFs as the `Chromatyx-PrintAndPlay` artifact.
-
-## 🚀 Usage
-
-Print the PDF **double-sided, flipping on the long edge**, on A4 (300 DPI,
-9 cards per sheet, 56 mm × 87 mm each) and cut along the crop marks. The
-pages alternate card fronts and matching card backs — back positions are
-already mirrored so every card lines up after the flip.
+The build is the design tool. Change the sheet, re-render, and the cross-references, the card data
+and the printable sheets all move together — which is what makes iterating on rules cheap enough to
+actually do.
 
 ## ✨ Features
 
@@ -70,6 +63,23 @@ Status:
 - [X] English card texts (generated from the localization sheet)
 - [X] Duplex print layout (mirrored backs on alternating pages)
 - [X] Rulebook (markdown sources in German and English, built to PDF)
+
+## 📦 Installation
+
+Grab the card deck (`Chromatyx-de-DE.pdf` / `Chromatyx-en-US.pdf`) and the
+matching rulebook (`Chromatyx-Rulebook-de-DE.pdf` / `Chromatyx-Rulebook-en-US.pdf`)
+and print them — no software needed to play:
+
+- **Stable:** the [latest release](https://github.com/Hawkynt/Chromatyx/releases/latest) (tagged `vyyyyMMdd`).
+- **Nightly:** the newest [`nightly-yyyyMMdd` prerelease](https://github.com/Hawkynt/Chromatyx/releases), published automatically whenever CI passes on `main`.
+- **Bleeding edge:** every CI run uploads the rendered PDFs as the `Chromatyx-PrintAndPlay` artifact.
+
+## 🚀 Quick start
+
+Print the PDF **double-sided, flipping on the long edge**, on A4 (300 DPI,
+9 cards per sheet, 56 mm × 87 mm each) and cut along the crop marks. The
+pages alternate card fronts and matching card backs — back positions are
+already mirrored so every card lines up after the flip.
 
 ## 🛠️ Building
 
