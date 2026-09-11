@@ -90,3 +90,18 @@ jobs:
           path: Chromatyx-*.pdf
           if-no-files-found: error
           retention-days: 14
+
+  # A text lint over README.md against the house convention — no build, no toolchain — so it
+  # runs beside the rest rather than inside it and cannot mask them.
+  repo-readme:
+    name: repo README
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # The licence here is CC BY-NC-SA, not the house LGPL, and it carries attribution and
+      # non-commercial terms that the byte-identical License body has no room for. Waiving the
+      # body check keeps those terms; every other rule still applies.
+      - uses: Hawkynt/RepositoryTemplate/repo-readme@v1
+        with:
+          allow: license-body
